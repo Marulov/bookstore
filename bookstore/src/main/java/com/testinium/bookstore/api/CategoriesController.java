@@ -37,8 +37,9 @@ public class CategoriesController {
 	}
 
 	@DeleteMapping
-	public void deleteCategory(@RequestBody CategoryDto categoryDto) {
+	public ResponseEntity<CategoryDto> deleteCategory(@RequestBody CategoryDto categoryDto) {
 
 		this.categoryService.deleteCategory(categoryDto);
+		return ResponseEntity.ok().build();
 	}
 }
