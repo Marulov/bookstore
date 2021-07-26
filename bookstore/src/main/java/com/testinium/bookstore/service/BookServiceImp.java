@@ -27,7 +27,6 @@ public class BookServiceImp implements BookService {
 
 		List<Book> books = this.bookDao.findAll();
 		List<BookDto> bookDtos = books.stream().map(book -> modelMapper.map(book, BookDto.class)).toList();
-
 		return bookDtos;
 
 	}
@@ -53,7 +52,6 @@ public class BookServiceImp implements BookService {
 
 		Book categoryChange = this.bookDao.findById(id).get();
 		categoryChange.setCategory(category);
-
 		return modelMapper.map(this.bookDao.save(categoryChange), BookDto.class);
 	}
 
@@ -61,7 +59,6 @@ public class BookServiceImp implements BookService {
 	public BookDto createBook(BookDto bookDto) {
 
 		Book book = modelMapper.map(bookDto, Book.class);
-
 		return modelMapper.map(this.bookDao.save(book), BookDto.class);
 
 	}

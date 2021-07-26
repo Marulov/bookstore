@@ -45,21 +45,22 @@ public class BookstoreServiceImp implements BookstoreService {
 	public TransactionRecordsDto addBookToBookstore(TransactionRecordsDto transactionRecordsDto) {
 
 		TransactionRecords transactionRecords = modelMapper.map(transactionRecordsDto, TransactionRecords.class);
-
 		return modelMapper.map(this.transactionRecordsDao.save(transactionRecords), TransactionRecordsDto.class);
 
 	}
 
 	@Override
-	public void deleteBookstore(Bookstore bookstore) {
+	public void deleteBookstore(BookstoreDto bookstoreDto) {
 
+		Bookstore bookstore = this.bookstoreDao.findById(bookstoreDto.getId()).get();
 		this.bookstoreDao.delete(bookstore);
 
 	}
 
 	@Override
-	public void deleteBookToBookstore(TransactionRecords transactionRecords) {
+	public void deleteBookToBookstore(TransactionRecordsDto transactionRecordsDto) {
 
+		TransactionRecords transactionRecords = this.transactionRecordsDao.findById(transactionRecordsDto.getId()).get();
 		this.transactionRecordsDao.delete(transactionRecords);
 
 	}

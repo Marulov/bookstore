@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.testinium.bookstore.domain.Bookstore;
-import com.testinium.bookstore.domain.TransactionRecords;
 import com.testinium.bookstore.dto.BookstoreDto;
 import com.testinium.bookstore.dto.TransactionRecordsDto;
 import com.testinium.bookstore.service.BookstoreService;
@@ -34,9 +33,10 @@ public class BookstoresController {
 	}
 
 	@DeleteMapping("/deletebookstore")
-	public void deleteBookstore(@RequestBody Bookstore bookstore) {
+	public ResponseEntity<BookstoreDto> deleteBookstore(@RequestBody BookstoreDto bookstoreDto) {
 
-		this.bookstoreService.deleteBookstore(bookstore);
+		this.bookstoreService.deleteBookstore(bookstoreDto);
+		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping
@@ -53,8 +53,9 @@ public class BookstoresController {
 	}
 
 	@DeleteMapping("/deletebooktobookstore")
-	public void deleteBookToBookstore(@RequestBody TransactionRecords transactionRecords) {
+	public ResponseEntity<TransactionRecordsDto> deleteBookToBookstore(@RequestBody TransactionRecordsDto transactionRecordsDto) {
 
-		this.bookstoreService.deleteBookToBookstore(transactionRecords);
+		this.bookstoreService.deleteBookToBookstore(transactionRecordsDto);
+		return ResponseEntity.ok().build();
 	}
 }
